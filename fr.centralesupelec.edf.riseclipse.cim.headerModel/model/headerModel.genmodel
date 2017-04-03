@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=" Copyright (c) 2016 CentraleSupélec &amp; EDF.&#xA; All rights reserved. This program and the accompanying materials&#xA; are made available under the terms of the Eclipse Public License v1.0&#xA; which accompanies this distribution, and is available at&#xA; http://www.eclipse.org/legal/epl-v10.html&#xA;&#xA; This file is part of the RiseClipse tool&#xA; &#xA; Contributors:&#xA;     Computer Science Department, CentraleSupélec : initial implementation&#xA; Contacts:&#xA;     Dominique.Marcadet@centralesupelec.fr&#xD;&#xA;"
+    modelDirectory="/fr.centralesupelec.edf.riseclipse.cim.headerModel/src" modelPluginID="fr.centralesupelec.edf.riseclipse.cim.headerModel"
+    modelName="HeaderModel" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true" cleanup="true">
+  <foreignModel>headerModel.ecore</foreignModel>
+  <genPackages prefix="ModelDescription" basePackage="fr.centralesupelec.edf.riseclipse.cim.headerModel"
+      disposableProviderFactory="true" ecorePackage="headerModel.ecore#/">
+    <genClasses ecoreClass="headerModel.ecore#//Model">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/scenarioTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/version"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/modelingAuthoritySet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/profile"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/dependentOnUrn"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/supersedesUrn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference headerModel.ecore#//Model/DependentOn"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference headerModel.ecore#//Model/Depending"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference headerModel.ecore#//Model/Supersedes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference headerModel.ecore#//Model/SupersedesBy"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute headerModel.ecore#//Model/urn"/>
+    </genClasses>
+    <genClasses ecoreClass="headerModel.ecore#//FullModel"/>
+    <genClasses ecoreClass="headerModel.ecore#//DifferenceModel"/>
+  </genPackages>
+</genmodel:GenModel>
