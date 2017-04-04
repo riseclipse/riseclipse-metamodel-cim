@@ -21,7 +21,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 
-import fr.centralesupelec.edf.riseclipse.util.RiseClipseException;
+import fr.centralesupelec.edf.riseclipse.util.RiseClipseRuntimeException;
 
 public abstract class CimResourceHandler extends BasicResourceHandler {
     
@@ -58,134 +58,13 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
         buffer.append( '"' );
         buffer.append( '\n' );
         
-//        buffer.append( "    " );
-//        buffer.append( CimConstants.xmlnsPrefix );
-//        buffer.append( ':' );
-//        buffer.append( CimConstants.mdPrefix );
-//        buffer.append( '=' );
-//        buffer.append( '"' );
-//        buffer.append( CimConstants.mdURI );
-//        buffer.append( "\">\n" );
-        
         try {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch( IOException e ) {
-            throw new RiseClipseException( "CimResourceHandler.preSave: outputStream.write failed", e );
+            throw new RiseClipseRuntimeException( "CimResourceHandler.preSave: outputStream.write failed", e );
         }
         
-        // Save header if present
-        // TODO: header
-        /*
-        if( (( CimResourceImpl ) resource ).isHeaderPresent() ) {
-            CimModelHeader header = (( CimResourceImpl ) resource ).getHeader();
-            buffer = new StringBuffer();
-            
-            buffer.append( '<' );
-            buffer.append( CimConstants.qualifiedMdFullModel );
-            buffer.append( ' ' );
-            buffer.append( CimConstants.qualifiedRdfAbout );
-            buffer.append( '=' );
-            buffer.append( '"' );
-            buffer.append( header.getModelID() );
-            buffer.append( "\">\n" );
-            
-            if( header.getCreated() != null ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdCreated );
-                buffer.append( '>' );
-                buffer.append( new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'SSSZ").format( header.getCreated() ));
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdCreated );
-                buffer.append( ">\n" );
-            }
-            
-            if( header.getScenarioTime() != null ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdScenarioTime );
-                buffer.append( '>' );
-                buffer.append( new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'.'SSSZ").format( header.getScenarioTime() ));
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdScenarioTime );
-                buffer.append( ">\n" );
-            }
-            
-            if( header.getDescription() != null ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdDescription );
-                buffer.append( '>' );
-                buffer.append( header.getDescription() );
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdDescription );
-                buffer.append( ">\n" );
-            }
-            
-            if( header.getModelingAuthoritySet() != null ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdModelingAuthoritySet );
-                buffer.append( '>' );
-                buffer.append( header.getModelingAuthoritySet() );
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdModelingAuthoritySet );
-                buffer.append( ">\n" );
-            }
-            
-            if( header.getVersion() != null ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdVersion );
-                buffer.append( '>' );
-                buffer.append( header.getVersion() );
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdVersion );
-                buffer.append( ">\n" );
-            }
-            
-            Iterator<String> s = header.getDependentOnIterator();
-            while( s.hasNext() ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdDependentOn );
-                buffer.append( ' ' );
-                buffer.append( CimConstants.qualifiedRdfResource );
-                buffer.append( '=' );
-                buffer.append( '"' );
-                buffer.append( s.next() );
-                buffer.append( "\" />\n" );
-            }
-            
-            s = header.getSupersededByIterator();
-            while( s.hasNext() ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdSupersededBy );
-                buffer.append( ' ' );
-                buffer.append( CimConstants.qualifiedRdfResource );
-                buffer.append( '=' );
-                buffer.append( '"' );
-                buffer.append( s.next() );
-                buffer.append( "\" />\n" );
-            }
-            
-            s = header.getProfileIterator();
-            while( s.hasNext() ) {
-                buffer.append( "  <" );
-                buffer.append( CimConstants.qualifiedMdProfile );
-                buffer.append( '>' );
-                buffer.append( s.next() );
-                buffer.append( "</" );
-                buffer.append( CimConstants.qualifiedMdProfile );
-                buffer.append( ">\n" );
-            }
-            
-            buffer.append( "</" );
-            buffer.append( CimConstants.qualifiedMdFullModel );
-            buffer.append( ">\n" );
-            
-            try {
-                outputStream.write( buffer.toString().getBytes() );
-            } catch (IOException e) {
-                throw new RuntimeException( e );
-            }
-        }
-        */
     }
 
     @Override
@@ -207,7 +86,7 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch (IOException e) {
-            throw new RiseClipseException( "CimResourceHandler.postSave: outputStream.write failed", e );
+            throw new RiseClipseRuntimeException( "CimResourceHandler.postSave: outputStream.write failed", e );
         }
 
         super.postSave( resource, outputStream, options );
