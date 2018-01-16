@@ -106,7 +106,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
 
         // Merge foreign objects into originals
         for( EObject object : foreignObjects ) {
-            EObject original = getEObjectByIDInNeighbors( this.getID( object ).substring( 1 ) );
+            EObject original = getEObjectByIDInNeighbors( this.getID( object ));
             if( original != null ) {
                 EClass c = original.eClass();
                 for( EStructuralFeature f : c.getEAllStructuralFeatures() ) {
@@ -118,7 +118,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
             }
             else {
                 AbstractRiseClipseConsole.getConsole().error(
-                        "cannot find foreign object with ID " + this.getID( object ).substring( 1 ) + " in "
+                        "cannot find foreign object with ID " + this.getID( object ) + " in "
                                 + this.uri.lastSegment() );
             }
         }
@@ -137,7 +137,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
      * search in the whole resource, and it will do it for every reference to objects in other
      * resources !
      * 
-     * We implement here the folowing strategy :
+     * We implement here the following strategy :
      * - it we are in endDocument() (not all resources are loaded), we just look in idToEObjectMap
      * - if we finalize the load, we look in other resources in the same resourceSet.
      * 
