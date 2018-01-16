@@ -65,7 +65,17 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
      */
     @Override
     public void setID( EObject obj, String id ) {
-        super.setID( obj, id );
+        // XMLResourceImpl.setID( EObject obj, String id ) updates both eObjectToIDMap and idToEObjectMap
+        // We do not need the first, and if it is constructed, we have a problem in finalizeLoad():
+        // when we do remove( object ), the setID will be called with null, but the lookup of rdf:ID will fail
+        // because namespaceSupport in XMLHelper is empty (popContext() called at XMLHandler.endDocument) and
+        // prefix rdf cannot be resolved, so we get an unknown feature error !
+        // So we do not call the method of the superclass
+        //super.setID( obj, id );
+        if( id != null ) {
+            getIDToEObjectMap().put( id, obj );
+        }
+
         // CimObjectWithID is unknown here
         // TODO : put this class in this package ?
         cimXMLHandler.setIDAttribValue( obj, id );
