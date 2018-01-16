@@ -288,6 +288,24 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
                 }
             }
         }
+        
+        // When an rdf:about is used, it is converted to rdf:ID by CimXMLHandler.getFeature()
+        // However, the the value starts with a # that must be removed
+        if( CimConstants.nameRdfID.equals( feature.getName() )) {
+                try {
+                    String id = ( String ) value;
+                    if( id.charAt( 0 ) == '#' ) {
+                        super.setFeatureValue( object, feature, id.substring( 1 ), position );
+                    }
+                    else {
+                        super.setFeatureValue( object, feature, value, position );
+                    }
+                }
+                catch( ClassCastException e ) {
+                    super.setFeatureValue( object, feature, value, position );
+                }
+                return;
+        }
         super.setFeatureValue( object, feature, value, position );
     }
     
