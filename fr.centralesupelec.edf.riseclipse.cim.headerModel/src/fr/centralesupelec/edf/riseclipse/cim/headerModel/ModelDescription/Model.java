@@ -60,7 +60,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Created</em>' attribute.
      * @see #setCreated(Date)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_Created()
-     * @model extendedMetaData="name='Model.created' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.created' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     Date getCreated();
@@ -86,7 +86,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Scenario Time</em>' attribute.
      * @see #setScenarioTime(Date)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_ScenarioTime()
-     * @model extendedMetaData="name='Model.scenarioTime' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.scenarioTime' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     Date getScenarioTime();
@@ -112,7 +112,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Description</em>' attribute.
      * @see #setDescription(String)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_Description()
-     * @model extendedMetaData="name='Model.description' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.description' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     String getDescription();
@@ -138,7 +138,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Version</em>' attribute.
      * @see #setVersion(String)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_Version()
-     * @model extendedMetaData="name='Model.version' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.version' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     String getVersion();
@@ -164,7 +164,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Modeling Authority Set</em>' attribute.
      * @see #setModelingAuthoritySet(String)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_ModelingAuthoritySet()
-     * @model extendedMetaData="name='Model.modelingAuthoritySet' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.modelingAuthoritySet' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     String getModelingAuthoritySet();
@@ -190,7 +190,7 @@ public interface Model extends EObject {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Profile</em>' attribute list.
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_Profile()
-     * @model extendedMetaData="name='Model.profile' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     * @model extendedMetaData="name='Model.profile' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     EList< String > getProfile();
@@ -207,7 +207,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Dependent On Urn</em>' attribute list.
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_DependentOnUrn()
      * @model transient="true"
-     *        extendedMetaData="name='Model.DependentOn' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     *        extendedMetaData="name='Model.DependentOn' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     EList< String > getDependentOnUrn();
@@ -224,7 +224,7 @@ public interface Model extends EObject {
      * @return the value of the '<em>Supersedes Urn</em>' attribute list.
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_SupersedesUrn()
      * @model transient="true"
-     *        extendedMetaData="name='Model.Supersedes' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1#'"
+     *        extendedMetaData="name='Model.Supersedes' kind='element' namespace='http://iec.ch/TC57/61970-552/ModelDescription/1'"
      * @generated
      */
     EList< String > getSupersedesUrn();
@@ -313,7 +313,7 @@ public interface Model extends EObject {
      * @see #setUrn(String)
      * @see fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage#getModel_Urn()
      * @model id="true"
-     *        extendedMetaData="namespace='http://www.w3.org/1999/02/22-rdf-syntax-ns#' name='about' kind='attribute'"
+     *        extendedMetaData="namespace='http://www.w3.org/1999/02/22-rdf-syntax-ns' name='about' kind='attribute'"
      * @generated
      */
     String getUrn();

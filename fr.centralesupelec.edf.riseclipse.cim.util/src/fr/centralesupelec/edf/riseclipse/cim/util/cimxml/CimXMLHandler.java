@@ -184,7 +184,7 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
                 uri = helper.getURI( prefix );
             }
         }
-        if( CimConstants.rdfURI.equals( uri ) ) return;
+        if( CimConstants.rdfURISharp.equals( uri ) ) return;
 
         super.endElement( uri, localName, name );
     }

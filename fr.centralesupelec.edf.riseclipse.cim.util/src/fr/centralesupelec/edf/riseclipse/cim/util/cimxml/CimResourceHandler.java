@@ -44,7 +44,7 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
         buffer.append( CimConstants.rdfPrefix );
         buffer.append( '=' );
         buffer.append( '"' );
-        buffer.append( CimConstants.rdfURI );
+        buffer.append( CimConstants.rdfURISharp );
         buffer.append( '"' );
         buffer.append( '\n' );
 

@@ -33,6 +33,7 @@ public abstract class CimXMLHelperImpl extends XMLHelperImpl {
     public String getURI( String prefix ) {
         String uri = super.getURI( prefix );
         if( CimConstants.mdURIDef.equals( uri )) return CimConstants.mdURIDes;
+        if(( uri != null ) && uri.endsWith( "#" )) return uri.substring( 0, uri.length() - 1 );
         return uri;
     }
 

@@ -19,7 +19,8 @@ public abstract class CimConstants {
     public static final String xmlnsURI = "http://www.w3.org/2000/xmlns/"; //$NON-NLS-1$
     public static final String xmlnsPrefix = "xmlns"; //$NON-NLS-1$
     
-    public static final String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"; //$NON-NLS-1$
+    public static final String rdfURI = "http://www.w3.org/1999/02/22-rdf-syntax-ns"; //$NON-NLS-1$
+    public static final String rdfURISharp = rdfURI + "#"; //$NON-NLS-1$
     public static final String rdfPrefix = "rdf";  //$NON-NLS-1$
     public static final String nameRdfRDF = "RDF"; //$NON-NLS-1$
     public static final String nameRdfID = "ID"; //$NON-NLS-1$
@@ -33,8 +34,10 @@ public abstract class CimConstants {
     public static final String qualifiedRdfAbout       = rdfPrefix + ":" + nameRdfAbout;
     public static final String qualifiedRdfDescription = rdfPrefix + ":" + nameRdfDescription;
     
-    public static final String mdURIDes = "http://iec.ch/TC57/61970-552/ModelDescription/1#";
-    public static final String mdURIDef = "http://iec.ch/TC57/61970-552/ModelDefinition/1#";
+    public static final String mdURIDes = "http://iec.ch/TC57/61970-552/ModelDescription/1";
+    public static final String mdURIDesSharp = mdURIDes + "#";
+    public static final String mdURIDef = "http://iec.ch/TC57/61970-552/ModelDefinition/1";
+    public static final String mdURIDefSharp = mdURIDef + "#";
 //    public static final String mdPrefix = "md";
 //    public static final String nameMdFullModel = "FullModel";
 //    public static final String nameMdModel = "Model";
@@ -60,7 +63,8 @@ public abstract class CimConstants {
     
     public static final String cimPrefix = "cim";  //$NON-NLS-1$
     
-    public static final String dmURI = "http://iec.ch/2002/schema/CIM_difference_model#"; //$NON-NLS-1$
+    public static final String dmURI = "http://iec.ch/2002/schema/CIM_difference_model"; //$NON-NLS-1$
+    public static final String dmURISharp = dmURI + "#"; //$NON-NLS-1$
     public static final String dmPrefix = "dm";  //$NON-NLS-1$
     public static final String nameDmDifferenceModel = "DifferenceModel"; //$NON-NLS-1$
     public static final String nameDmReverseDifferences = "reverseDifferences"; //$NON-NLS-1$

@@ -420,23 +420,23 @@ public class ModelDescriptionPackageImpl extends EPackageImpl implements ModelDe
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
         addAnnotation( getModel_Created(), source, new String[] { "name", "Model.created", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_ScenarioTime(), source, new String[] { "name", "Model.scenarioTime", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_Description(), source, new String[] { "name", "Model.description", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_Version(), source, new String[] { "name", "Model.version", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_ModelingAuthoritySet(), source, new String[] { "name", "Model.modelingAuthoritySet",
-                "kind", "element", "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "kind", "element", "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_Profile(), source, new String[] { "name", "Model.profile", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_DependentOnUrn(), source, new String[] { "name", "Model.DependentOn", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
         addAnnotation( getModel_SupersedesUrn(), source, new String[] { "name", "Model.Supersedes", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1#" } );
-        addAnnotation( getModel_Urn(), source, new String[] { "namespace",
-                "http://www.w3.org/1999/02/22-rdf-syntax-ns#", "name", "about", "kind", "attribute" } );
+                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
+        addAnnotation( getModel_Urn(), source, new String[] { "namespace", "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+                "name", "about", "kind", "attribute" } );
     }
 
 } //ModelDescriptionPackageImpl
