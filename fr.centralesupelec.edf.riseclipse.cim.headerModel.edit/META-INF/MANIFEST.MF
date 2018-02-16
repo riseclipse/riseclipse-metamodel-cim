@@ -7,8 +7,8 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Activator: fr.centralesupelec.riseclipse.edf.cim.headerModel.ModelDescription.provider.HeaderModelEditPlugin$Implementation
-Export-Package: fr.centralesupelec.riseclipse.edf.cim.headerModel.ModelDescription.provider
+Bundle-Activator: fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider.HeaderModelEditPlugin$Implementation
+Export-Package: fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider
 Require-Bundle: org.eclipse.core.runtime,
  fr.centralesupelec.edf.riseclipse.cim.headerModel;visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
