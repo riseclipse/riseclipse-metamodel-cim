@@ -120,32 +120,34 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
     @Override
     protected void handleFeature( String prefix, String name ) {
         EObject peekObject = objects.peekEObject();
-        EStructuralFeature feature = getFeature( peekObject, prefix, name, true );
-        // For compound objects
-        if( nextIsCompound ) {
-            if( feature != null ) {
-                // TODO: Something unexpected ???
+        if( peekObject != null ) {
+            EStructuralFeature feature = getFeature( peekObject, prefix, name, true );
+            // For compound objects
+            if( nextIsCompound ) {
+                if( feature != null ) {
+                    // TODO: Something unexpected ???
+                }
+                nextIsCompound = false;
+                objects.push( peekObject );
+                types.push( OBJECT_TYPE );
+                mixedTargets.push( null );
+                return;
             }
-            nextIsCompound = false;
-            objects.push( peekObject );
-            types.push( OBJECT_TYPE );
-            mixedTargets.push( null );
-            return;
-        }
-        if( feature instanceof EReference ) {
-            EReference eReference = ( EReference ) feature;
-            
-            EReference opposite = eReference.getEOpposite();
-            if(   eReference.isResolveProxies() &&    eReference.isTransient() &&
-                ! opposite   .isResolveProxies() && ! opposite.  isTransient()) {
-                eReference.setResolveProxies( false );
-                eReference.setTransient( false );
-                opposite.setResolveProxies( true );
-                opposite.setTransient( true );
-            }
-            
-            if( eReference.isContainment() ) {
-                nextIsCompound = true;
+            if( feature instanceof EReference ) {
+                EReference eReference = ( EReference ) feature;
+                
+                EReference opposite = eReference.getEOpposite();
+                if(   eReference.isResolveProxies() &&    eReference.isTransient() &&
+                    ! opposite   .isResolveProxies() && ! opposite.  isTransient()) {
+                    eReference.setResolveProxies( false );
+                    eReference.setTransient( false );
+                    opposite.setResolveProxies( true );
+                    opposite.setTransient( true );
+                }
+                
+                if( eReference.isContainment() ) {
+                    nextIsCompound = true;
+                }
             }
         }
         super.handleFeature( prefix, name );
