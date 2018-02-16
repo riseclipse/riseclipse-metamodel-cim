@@ -12,7 +12,7 @@
  *  Contacts:
  *      Dominique.Marcadet@centralesupelec.fr
  */
-package fr.centralesupelec.riseclipse.edf.cim.headerModel.ModelDescription.provider;
+package fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

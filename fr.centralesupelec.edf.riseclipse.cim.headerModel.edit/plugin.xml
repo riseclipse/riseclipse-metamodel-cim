@@ -24,7 +24,7 @@
       <!-- @generated headerModel -->
       <factory
             uri="http://iec.ch/TC57/61970-552/ModelDescription/1#"
-            class="fr.centralesupelec.riseclipse.edf.cim.headerModel.ModelDescription.provider.ModelDescriptionItemProviderAdapterFactory"
+            class="fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider.ModelDescriptionItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider
