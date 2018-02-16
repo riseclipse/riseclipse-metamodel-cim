@@ -23,7 +23,7 @@
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <!-- @generated headerModel -->
       <factory
-            uri="http://iec.ch/TC57/61970-552/ModelDescription/1#"
+            uri="http://iec.ch/TC57/61970-552/ModelDescription/1"
             class="fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider.ModelDescriptionItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

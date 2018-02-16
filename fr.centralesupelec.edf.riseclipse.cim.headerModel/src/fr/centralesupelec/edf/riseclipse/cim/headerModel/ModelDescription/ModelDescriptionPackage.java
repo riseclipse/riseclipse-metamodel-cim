@@ -50,7 +50,7 @@ public interface ModelDescriptionPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    String eNS_URI = "http://iec.ch/TC57/61970-552/ModelDescription/1#";
+    String eNS_URI = "http://iec.ch/TC57/61970-552/ModelDescription/1";
 
     /**
      * The package namespace name.
