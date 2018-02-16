@@ -155,21 +155,24 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
 
     @Override
     protected void handleUnknownFeature( String prefix, String name, boolean isElement, EObject peekObject, String value ) {
-        // TODO
+        // TODO: some RiseClipse specific message ?
         super.handleUnknownFeature( prefix, name, isElement, peekObject, value );
     }
 
     @Override
     protected EStructuralFeature getFeature( EObject object, String prefix, String name, boolean isElement ) {
-        String uri = helper.getURI( prefix );
-        if( CimConstants.rdfURI.equals( uri ) && CimConstants.nameRdfAbout.equals( name )) {
-            // We consider that rdf:about is the same as rdf:ID for the purpose of reading files.
-            // But, such an object will have to be merged with the real object when all
-            // resources are loaded.
-            // This is only valid for CimObject, not for FullModel in header !
-            if( object.eClass().getEPackage() != ModelDescriptionPackage.eINSTANCE ) {
-                (( CimResourceImpl ) xmlResource ).addForeignObject( object );
-                name = CimConstants.nameRdfID;
+        // May be called with null prefix (see XMLHandler.handleFeature(String prefix, String name))
+        if( prefix != null ) {
+            String uri = helper.getURI( prefix );
+            if( CimConstants.rdfURI.equals( uri ) && CimConstants.nameRdfAbout.equals( name )) {
+                // We consider that rdf:about is the same as rdf:ID for the purpose of reading files.
+                // But, such an object will have to be merged with the real object when all
+                // resources are loaded.
+                // This is only valid for CimObject, not for FullModel in header !
+                if( object.eClass().getEPackage() != ModelDescriptionPackage.eINSTANCE ) {
+                    (( CimResourceImpl ) xmlResource ).addForeignObject( object );
+                    name = CimConstants.nameRdfID;
+                }
             }
         }
         return super.getFeature( object, prefix, name, isElement );
