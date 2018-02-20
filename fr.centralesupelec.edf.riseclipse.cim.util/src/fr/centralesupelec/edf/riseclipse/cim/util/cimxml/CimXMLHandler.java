@@ -203,6 +203,12 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         // Take care of references
         String resource = attribs.getValue( CimConstants.qualifiedRdfResource );
         if( resource != null ) {
+            int p = resource.indexOf( "#" );
+            if( p != -1 ) {
+                // Ignore the URI before the # because we don't handle it
+                // TODO: handle it!
+                resource = resource.substring( p );
+            }
             super.setValueFromId( object, eReference, resource );
         }
         else {
