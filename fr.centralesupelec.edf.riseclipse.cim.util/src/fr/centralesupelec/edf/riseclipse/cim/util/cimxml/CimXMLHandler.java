@@ -204,7 +204,14 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         String resource = attribs.getValue( CimConstants.qualifiedRdfResource );
         if( resource != null ) {
             int p = resource.indexOf( "#" );
-            if( p != -1 ) {
+            if( p == -1 ) {
+                AbstractRiseClipseConsole.getConsole().error(
+                        "The rdf:resource value of "
+                      + eReference.getContainerClass().getSimpleName()
+                      + "." + eReference.getName()
+                      + " is missing '#'" );
+            }
+            else {
                 // Ignore the URI before the # because we don't handle it
                 // TODO: handle it!
                 resource = resource.substring( p );
