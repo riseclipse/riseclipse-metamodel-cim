@@ -205,11 +205,12 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         if( resource != null ) {
             int p = resource.indexOf( "#" );
             if( p == -1 ) {
+                String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
                 AbstractRiseClipseConsole.getConsole().error(
                         "The rdf:resource value of "
                       + eReference.getContainerClass().getSimpleName()
                       + "." + eReference.getName()
-                      + " is missing '#'" );
+                      + " is missing '#'" + where );
             }
             else {
                 // Ignore the URI before the # because we don't handle it
@@ -221,11 +222,12 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         else {
             // Issue #3-an-error-should-be-detected-when-a-reference-is-given-as-the-element-value-instead-of-as-the-value-of-the-rdf-resource-attribute
             //super.setValueFromId( object, eReference, ids );
+            String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
             AbstractRiseClipseConsole.getConsole().error(
                       "the value of feature "
                     + eReference.getContainerClass().getSimpleName()
                     + "." + eReference.getName()
-                    + " should be given using the rdf:resource attribute" );
+                    + " should be given using the rdf:resource attribute" + where );
         }
     }
     
@@ -241,15 +243,16 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         // Catch multiple set of same attribute (see below for references)
         if( ! feature.isMany() ) {
             if( object.eIsSet( feature )) {
+                String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
                 if( object.eGet( feature ).equals( value )) {
                     AbstractRiseClipseConsole.getConsole().warning(
                               "feature " + feature.getName()
-                            + " has already been set with same value" );
+                            + " has already been set with same value" + where );
                 }
                 else {
                     AbstractRiseClipseConsole.getConsole().error(
                               "feature " + feature.getName()
-                            + " has already been set with a different value, it will be overwritten" );
+                            + " has already been set with a different value, it will be overwritten" + where );
                 }
             }
         }
@@ -287,17 +290,18 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
     @Override
     protected void setFeatureValue( EObject object, EStructuralFeature feature, Object value, int position ) {
         if( feature instanceof EReference ) {
+            String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
             if( ! feature.isMany() ) {
                 if( object.eIsSet( feature )) {
                     if( object.eGet( feature ).equals( value )) {
                         AbstractRiseClipseConsole.getConsole().warning(
                                   "feature " + feature.getName()
-                                + " has already been set with same value" );
+                                + " has already been set with same value" + where );
                     }
                     else {
                         AbstractRiseClipseConsole.getConsole().error(
                                   "feature " + feature.getName()
-                                + " has already been set with a different value, it will be overwritten" );
+                                + " has already been set with a different value, it will be overwritten" + where );
                     }
                 }
             }
@@ -306,7 +310,7 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
                 if(( l != null ) && l.contains( value )) {
                     AbstractRiseClipseConsole.getConsole().warning(
                               "reference " + feature.getName()
-                            + " has already been added with same value" );
+                            + " has already been added with same value" + where );
                 }
             }
         }
