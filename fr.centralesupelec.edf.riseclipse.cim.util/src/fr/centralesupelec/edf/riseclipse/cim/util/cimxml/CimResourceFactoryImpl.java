@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.xmi.impl.XMLMapImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 
 
+
 /**
  */
 public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl {
@@ -69,7 +70,7 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl {
         // TODO: find usage
         //result.getDefaultLoadOptions().put( XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE );
 
-        // <?xml line is set by CimResourceHandler.preSvae
+        // <?xml line is set by CimResourceHandler.preSave
         result.getDefaultSaveOptions().put( XMLResource.OPTION_DECLARE_XML, Boolean.FALSE );
         result.getDefaultSaveOptions().put( XMLResource.OPTION_ENCODING, "UTF-8" );
         // Keep all values that has been set
@@ -80,7 +81,7 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl {
         XMLResource.XMLMap map = new XMLMapImpl();
         // rdf prefix may be hardcoded because we know we use it for saving
         map.setIDAttributeName( CimConstants.qualifiedRdfID );
-        result.getDefaultLoadOptions().put( XMLResource.OPTION_XML_MAP, map );
+        result.getDefaultSaveOptions().put( XMLResource.OPTION_XML_MAP, map );
 
         // From https://www.eclipse.org/modeling/emf/docs/performance/EMFPerformanceTips.html
         // and https://sdqweb.ipd.kit.edu/wiki/EMF_Model_Loading_Performance_Tweaks
