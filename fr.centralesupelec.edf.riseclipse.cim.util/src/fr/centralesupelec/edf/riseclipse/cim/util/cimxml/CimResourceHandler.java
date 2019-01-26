@@ -60,6 +60,7 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
         buffer.append( '"' );
         buffer.append( cimURI );
         buffer.append( '"' );
+        buffer.append( '>' );
         buffer.append( '\n' );
         
         try {
