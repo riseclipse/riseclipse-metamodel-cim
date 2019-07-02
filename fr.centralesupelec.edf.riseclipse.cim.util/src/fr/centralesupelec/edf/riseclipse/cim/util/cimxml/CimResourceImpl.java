@@ -125,7 +125,9 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
                 EClass c = original.eClass();
                 for( EStructuralFeature f : c.getEAllStructuralFeatures() ) {
                     if( object.eIsSet( f ) ) {
-                        original.eSet( f, object.eGet( f ) );
+                        Object value = object.eGet( f );
+                        object.eUnset( f );
+                        original.eSet( f, value );
                     }
                 }
                 this.getContents().remove( object );
