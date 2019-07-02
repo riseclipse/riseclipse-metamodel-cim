@@ -22,17 +22,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLMapImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLParserPoolImpl;
 
+import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResourceFactory;
+
 
 
 /**
  */
-public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl {
+public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl implements IRiseClipseResourceFactory {
 
     private Map< Object, Object > nameToFeatureCache;
 
@@ -53,7 +54,7 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl {
     protected abstract CimResourceHandler createCimResourceHandler();
     
     @Override
-    public Resource createResource( URI uri ) {
+    public CimResourceImpl createResource( URI uri ) {
         CimResourceImpl result = createCimResource( uri );
 
         result.getDefaultSaveOptions().put( XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE );

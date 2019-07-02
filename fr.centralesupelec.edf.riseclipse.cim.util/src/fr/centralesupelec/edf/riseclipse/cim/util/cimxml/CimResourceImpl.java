@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 
-import fr.centralesupelec.edf.riseclipse.util.AbstractRiseClipseConsole;
 import fr.centralesupelec.edf.riseclipse.util.IRiseClipseConsole;
 import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResource;
 
@@ -107,11 +106,12 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
     }
 
     @Override
-    public void finalizeLoad( boolean ignore_unresolved_reference ) {
+    public void finalizeLoad( IRiseClipseConsole console ) {
         // Avoid NPE when XML parser fails and endDocument is not called
         if( cimXMLHandler != null ) {
             loadFinalization = true;
-            if( ignore_unresolved_reference ) cimXMLHandler.set_ignore_unresolved_reference();
+            // TODO: find why this was needed and adapt accordingly
+//            if( ignore_unresolved_reference ) cimXMLHandler.set_ignore_unresolved_reference();
             cimXMLHandler.handleCrossResourceReferences();
             // put it back to false, because if another resource is finalizing and ask us for
             // an object, we must not search in another resource
@@ -131,7 +131,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
                 this.getContents().remove( object );
             }
             else {
-                AbstractRiseClipseConsole.getConsole().error(
+                console.error(
                         "cannot find foreign object with ID " + this.getID( object ) + " in "
                                 + this.uri.lastSegment() );
             }
