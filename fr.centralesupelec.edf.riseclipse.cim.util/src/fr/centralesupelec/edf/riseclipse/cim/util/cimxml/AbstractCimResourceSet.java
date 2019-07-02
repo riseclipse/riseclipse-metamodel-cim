@@ -24,11 +24,11 @@ import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResource;
 import fr.centralesupelec.edf.riseclipse.util.AbstractRiseClipseResourceSet;
 
 
-public abstract class CimResourceSetImpl extends AbstractRiseClipseResourceSet {
+public abstract class AbstractCimResourceSet extends AbstractRiseClipseResourceSet {
     
-    protected CimResourceFactoryImpl resourceFactory;
+    protected AbstractCimResourceFactory resourceFactory;
     
-    public CimResourceSetImpl( boolean strictContent ) {
+    public AbstractCimResourceSet( boolean strictContent ) {
         super( strictContent );
     }
 

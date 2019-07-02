@@ -21,22 +21,22 @@ package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.impl.XMLHelperImpl;
 
-public abstract class CimXMLHelperImpl extends XMLHelperImpl {
+public abstract class AbstractCimXmlHelper extends XMLHelperImpl {
 
-    public CimXMLHelperImpl( CimResourceImpl cimResourceImpl ) {
-        super( cimResourceImpl );
+    public AbstractCimXmlHelper( AbstractCimResource abstractCimResource ) {
+        super( abstractCimResource );
     }
 
 	@Override
 	public String getQName( EStructuralFeature feature ) {
 		// TODO better to modify metadata in ecore file
-		return CimConstants.cimPrefix + ":" + extendedMetaData.getName( feature );
+		return AbstractCimConstants.cimPrefix + ":" + extendedMetaData.getName( feature );
 	}
 
     @Override
     public String getURI( String prefix ) {
         String uri = super.getURI( prefix );
-        if( CimConstants.mdURIDef.equals( uri )) return CimConstants.mdURIDes;
+        if( AbstractCimConstants.mdURIDef.equals( uri )) return AbstractCimConstants.mdURIDes;
         if(( uri != null ) && uri.endsWith( "#" )) return uri.substring( 0, uri.length() - 1 );
         return uri;
     }

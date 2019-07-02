@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 
 import fr.centralesupelec.edf.riseclipse.util.RiseClipseRuntimeException;
 
-public abstract class CimResourceHandler extends BasicResourceHandler {
+public abstract class AbstractCimResourceHandler extends BasicResourceHandler {
     
     static final String xmlDeclaration = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\" ?>\n";
 
@@ -39,23 +39,23 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
         buffer.append( xmlDeclaration );
         
         buffer.append( '<' );
-        buffer.append( CimConstants.qualifiedRdfRDF );
+        buffer.append( AbstractCimConstants.qualifiedRdfRDF );
         buffer.append( '\n' );
         
         buffer.append( "    " );
-        buffer.append( CimConstants.xmlnsPrefix );
+        buffer.append( AbstractCimConstants.xmlnsPrefix );
         buffer.append( ':' );
-        buffer.append( CimConstants.rdfPrefix );
+        buffer.append( AbstractCimConstants.rdfPrefix );
         buffer.append( '=' );
         buffer.append( '"' );
-        buffer.append( CimConstants.rdfURISharp );
+        buffer.append( AbstractCimConstants.rdfURISharp );
         buffer.append( '"' );
         buffer.append( '\n' );
 
         buffer.append( "    " );
-        buffer.append( CimConstants.xmlnsPrefix );
+        buffer.append( AbstractCimConstants.xmlnsPrefix );
         buffer.append( ':' );
-        buffer.append( CimConstants.cimPrefix );
+        buffer.append( AbstractCimConstants.cimPrefix );
         buffer.append( '=' );
         buffer.append( '"' );
         buffer.append( cimURI );
@@ -67,7 +67,7 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch( IOException e ) {
-            throw new RiseClipseRuntimeException( "CimResourceHandler.preSave: outputStream.write failed", e );
+            throw new RiseClipseRuntimeException( "AbstractCimResourceHandler.preSave: outputStream.write failed", e );
         }
         
     }
@@ -80,9 +80,9 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
         buffer.append( '<' );
         buffer.append( '/' );
         
-        buffer.append( CimConstants.rdfPrefix );
+        buffer.append( AbstractCimConstants.rdfPrefix );
         buffer.append( ':' );
-        buffer.append( CimConstants.nameRdfRDF );
+        buffer.append( AbstractCimConstants.nameRdfRDF );
         
         buffer.append( '>' );
         buffer.append( '\n' );
@@ -91,7 +91,7 @@ public abstract class CimResourceHandler extends BasicResourceHandler {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch (IOException e) {
-            throw new RiseClipseRuntimeException( "CimResourceHandler.postSave: outputStream.write failed", e );
+            throw new RiseClipseRuntimeException( "AbstractCimResourceHandler.postSave: outputStream.write failed", e );
         }
 
         super.postSave( resource, outputStream, options );

@@ -34,10 +34,10 @@ import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResource;
 
 /**
  */
-public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseClipseResource {
+public abstract class AbstractCimResource extends XMLResourceImpl implements IRiseClipseResource {
 
     private HashMap< String, Integer > cimObjectsCount;
-    private CimXMLHandler cimXMLHandler;
+    private AbstractCimXmlHandler abstractCimXmlHandler;
     private Set< EObject > foreignObjects;
     private boolean loadFinalization;
 
@@ -45,7 +45,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
      * Creates an instance of the resource.
      * @param uri the URI of the new resource.
      */
-    public CimResourceImpl( URI uri ) {
+    public AbstractCimResource( URI uri ) {
         super( uri );
 
         // TODO: use both intrinsicID and extrinsicID ?
@@ -63,7 +63,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
     }
 
     /*
-     * rdf:ID is set as the IDAttributeName (@see CimResourceFactoryImpl.createResource()
+     * rdf:ID is set as the IDAttributeName (@see AbstractCimResourceFactory.createResource()
      * In SAXXMLHandler.handleObjectAttribs(), setID is called but not setAttribValue() 
      */
     @Override
@@ -81,7 +81,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
 
         // CimObjectWithID is unknown here
         // TODO : put this class in this package ?
-        cimXMLHandler.setIDAttribValue( obj, id );
+        abstractCimXmlHandler.setIDAttribValue( obj, id );
     }
 
     public void addCimObject( String name ) {
@@ -101,18 +101,18 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
         }
     }
 
-    public void setXMLHandler( CimXMLHandler cimXMLHandler ) {
-        this.cimXMLHandler = cimXMLHandler;
+    public void setXMLHandler( AbstractCimXmlHandler abstractCimXmlHandler ) {
+        this.abstractCimXmlHandler = abstractCimXmlHandler;
     }
 
     @Override
     public void finalizeLoad( IRiseClipseConsole console ) {
         // Avoid NPE when XML parser fails and endDocument is not called
-        if( cimXMLHandler != null ) {
+        if( abstractCimXmlHandler != null ) {
             loadFinalization = true;
             // TODO: find why this was needed and adapt accordingly
-//            if( ignore_unresolved_reference ) cimXMLHandler.set_ignore_unresolved_reference();
-            cimXMLHandler.handleCrossResourceReferences();
+//            if( ignore_unresolved_reference ) abstractCimXmlHandler.set_ignore_unresolved_reference();
+            abstractCimXmlHandler.handleCrossResourceReferences();
             // put it back to false, because if another resource is finalizing and ask us for
             // an object, we must not search in another resource
             loadFinalization = false;
@@ -143,12 +143,12 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
 
     /*
      * XMLResourceImpl.getEObjectByID() looks for object in idToEObjectMap which is not null
-     * because we force it by calling xmlResource.setID() in CimXMLHandler.processTopObject().
+     * because we force it by calling xmlResource.setID() in AbstractCimXmlHandler.processTopObject().
      * If the object belongs to this resource, it should be found (calls are made in endDocument()).
      * If the object belongs to another resource, it is not in idToEObjectMap.
      * Then, as XMLResourceImpl.useIDAttributes() say always yes, XMLResourceImpl.getEObjectByID()
      * calls ResourceImpl.getEObjectByID().
-     * This one looks in intrinsicIDToEObjectMap, which is also not null (see CimResourceImpl constructor).
+     * This one looks in intrinsicIDToEObjectMap, which is also not null (see AbstractCimResource constructor).
      * The object again will not be found in the map. Therefore, ResourceImpl.getEObjectByID() will
      * search in the whole resource, and it will do it for every reference to objects in other
      * resources !
@@ -181,7 +181,7 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
     protected EObject getEObjectByIDInNeighbors( String id ) {
         for( Resource resource : this.getResourceSet().getResources() ) {
             if( resource == this ) continue;
-            if( resource instanceof CimResourceImpl ) {
+            if( resource instanceof AbstractCimResource ) {
                 EObject obj = resource.getEObject( id );
                 if( obj != null ) return obj;
             }
@@ -194,4 +194,4 @@ public abstract class CimResourceImpl extends XMLResourceImpl implements IRiseCl
         foreignObjects.add( object );
     }
 
-} // CimResourceImpl
+} // AbstractCimResource

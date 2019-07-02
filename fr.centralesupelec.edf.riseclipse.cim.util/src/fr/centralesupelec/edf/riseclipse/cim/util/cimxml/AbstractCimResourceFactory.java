@@ -33,14 +33,14 @@ import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResourceFactory;
 
 /**
  */
-public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl implements IRiseClipseResourceFactory {
+public abstract class AbstractCimResourceFactory extends ResourceFactoryImpl implements IRiseClipseResourceFactory {
 
     private Map< Object, Object > nameToFeatureCache;
 
     /**
      * Creates an instance of the resource factory.
      */
-    protected CimResourceFactoryImpl() {
+    protected AbstractCimResourceFactory() {
         super();
 
         nameToFeatureCache = new HashMap< Object, Object >();
@@ -49,13 +49,13 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl impleme
     /**
      * Creates an instance of the resource.
      */
-    protected abstract CimResourceImpl createCimResource( URI uri );
+    protected abstract AbstractCimResource createCimResource( URI uri );
 
-    protected abstract CimResourceHandler createCimResourceHandler();
+    protected abstract AbstractCimResourceHandler createCimResourceHandler();
     
     @Override
-    public CimResourceImpl createResource( URI uri ) {
-        CimResourceImpl result = createCimResource( uri );
+    public AbstractCimResource createResource( URI uri ) {
+        AbstractCimResource result = createCimResource( uri );
 
         result.getDefaultSaveOptions().put( XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE );
         result.getDefaultLoadOptions().put( XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE );
@@ -71,7 +71,7 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl impleme
         // TODO: find usage
         //result.getDefaultLoadOptions().put( XMLResource.OPTION_USE_LEXICAL_HANDLER, Boolean.TRUE );
 
-        // <?xml line is set by CimResourceHandler.preSave
+        // <?xml line is set by AbstractCimResourceHandler.preSave
         result.getDefaultSaveOptions().put( XMLResource.OPTION_DECLARE_XML, Boolean.FALSE );
         result.getDefaultSaveOptions().put( XMLResource.OPTION_ENCODING, "UTF-8" );
         // Keep all values that has been set
@@ -81,7 +81,7 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl impleme
 
         XMLResource.XMLMap map = new XMLMapImpl();
         // rdf prefix may be hardcoded because we know we use it for saving
-        map.setIDAttributeName( CimConstants.qualifiedRdfID );
+        map.setIDAttributeName( AbstractCimConstants.qualifiedRdfID );
         result.getDefaultSaveOptions().put( XMLResource.OPTION_XML_MAP, map );
 
         // From https://www.eclipse.org/modeling/emf/docs/performance/EMFPerformanceTips.html
@@ -98,4 +98,4 @@ public abstract class CimResourceFactoryImpl extends ResourceFactoryImpl impleme
         return result;
     }
 
-} //CimResourceFactoryImpl
+} //AbstractCimResourceFactory

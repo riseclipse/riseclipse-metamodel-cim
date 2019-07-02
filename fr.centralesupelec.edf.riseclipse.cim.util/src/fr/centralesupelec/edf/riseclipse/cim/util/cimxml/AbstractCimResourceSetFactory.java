@@ -1,5 +1,5 @@
-/*
- *  Copyright (c) 2018 CentraleSupélec & EDF.
+/**
+ *  Copyright (c) 2019 CentraleSupélec & EDF.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -15,16 +15,15 @@
  *      aurelie.dehouck-neveu@edf.fr
  *  Web site:
  *      http://wdi.supelec.fr/software/RiseClipse/
+ * 
  */
 package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 
-import org.eclipse.emf.ecore.xmi.XMLHelper;
-import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
+import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResourceSetFactory;
 
-public abstract class CimXMLLoadImpl extends XMLLoadImpl {
-
-    public CimXMLLoadImpl( XMLHelper helper ) {
-        super( helper );
+public abstract class AbstractCimResourceSetFactory implements IRiseClipseResourceSetFactory {
+    
+    public AbstractCimResourceSetFactory() {
+        super();
     }
-
 }
