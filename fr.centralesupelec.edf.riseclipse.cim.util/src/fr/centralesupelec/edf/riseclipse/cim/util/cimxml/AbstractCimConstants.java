@@ -18,7 +18,7 @@
  */
 package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 
-public abstract class CimConstants {
+public abstract class AbstractCimConstants {
 
     public static final String xmlnsURI = "http://www.w3.org/2000/xmlns/"; //$NON-NLS-1$
     public static final String xmlnsPrefix = "xmlns"; //$NON-NLS-1$

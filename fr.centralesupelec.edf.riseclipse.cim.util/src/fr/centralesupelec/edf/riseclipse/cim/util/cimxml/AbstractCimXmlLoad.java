@@ -21,9 +21,9 @@ package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.impl.XMLLoadImpl;
 
-public abstract class CimXMLLoadImpl extends XMLLoadImpl {
+public abstract class AbstractCimXmlLoad extends XMLLoadImpl {
 
-    public CimXMLLoadImpl( XMLHelper helper ) {
+    public AbstractCimXmlLoad( XMLHelper helper ) {
         super( helper );
     }
 

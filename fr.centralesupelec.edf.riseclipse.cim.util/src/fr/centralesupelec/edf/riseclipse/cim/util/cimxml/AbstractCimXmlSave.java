@@ -29,30 +29,30 @@ import org.eclipse.emf.ecore.xmi.XMLHelper;
 import org.eclipse.emf.ecore.xmi.XMLSave;
 import org.eclipse.emf.ecore.xmi.impl.XMLSaveImpl;
 
-public abstract class CimXMLSaveImpl extends XMLSaveImpl implements XMLSave {
+public abstract class AbstractCimXmlSave extends XMLSaveImpl implements XMLSave {
 	
 	private String cimURI;
     private EStructuralFeature idStructuralFeature;
 
-    public CimXMLSaveImpl( String cimURI, XMLHelper helper ) {
+    public AbstractCimXmlSave( String cimURI, XMLHelper helper ) {
         super( helper );
 	    this.cimURI = cimURI;
 	    this.idStructuralFeature = null;
 	}
 
-	public CimXMLSaveImpl( String cimURI, Map< ?, ? > options, XMLHelper helper, String encoding ) {
+	public AbstractCimXmlSave( String cimURI, Map< ?, ? > options, XMLHelper helper, String encoding ) {
 		super( options, helper, encoding );
         this.cimURI = cimURI;
 	}
 
-	public CimXMLSaveImpl( String cimURI, Map< ?, ? > options, XMLHelper helper, String encoding, String xmlVersion ) {
+	public AbstractCimXmlSave( String cimURI, Map< ?, ? > options, XMLHelper helper, String encoding, String xmlVersion ) {
 		super( options, helper, encoding, xmlVersion );
         this.cimURI = cimURI;
 	}
 	
 	/*
 	 * The top object should be RDF, but we don't handle it as an object and the tags
-	 * are written by CimResourceHandler
+	 * are written by AbstractCimResourceHandler
 	 */
 	@Override
     protected Object writeTopObjects( List< ? extends EObject > contents ) {
@@ -65,7 +65,7 @@ public abstract class CimXMLSaveImpl extends XMLSaveImpl implements XMLSave {
     }
 	
     /*
-     * CimResourceHandler takes care of namespace declarations
+     * AbstractCimResourceHandler takes care of namespace declarations
      */
     @Override
     protected void addNamespaceDeclarations() {
@@ -82,7 +82,7 @@ public abstract class CimXMLSaveImpl extends XMLSaveImpl implements XMLSave {
         if( id != null ) {
             // doc.saveDataValueElement( name, id );
             doc.startElement( name );
-            doc.addAttribute( CimConstants.qualifiedRdfResource, id );
+            doc.addAttribute( AbstractCimConstants.qualifiedRdfResource, id );
             doc.endElement();
         }
     }
@@ -105,14 +105,14 @@ public abstract class CimXMLSaveImpl extends XMLSaveImpl implements XMLSave {
         svalue = svalue.append( "." );
         svalue = svalue.append( getDatatypeValue( value, f, true ));
         doc.startElement( helper.getQName( f ) );
-        doc.addAttribute( CimConstants.qualifiedRdfResource, svalue.toString() );
+        doc.addAttribute( AbstractCimConstants.qualifiedRdfResource, svalue.toString() );
         doc.endElement();
     }
 
     @Override
     protected boolean shouldSaveFeature( EObject o, EStructuralFeature f ) {
         if( this.idStructuralFeature == null ) {
-            if( CimConstants.nameRdfID.equals( f.getName() )) {
+            if( AbstractCimConstants.nameRdfID.equals( f.getName() )) {
                 this.idStructuralFeature = f;
                 return false;
             }

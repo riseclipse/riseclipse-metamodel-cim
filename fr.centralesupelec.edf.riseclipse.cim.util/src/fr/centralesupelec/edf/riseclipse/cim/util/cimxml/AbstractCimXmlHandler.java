@@ -35,14 +35,14 @@ import fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.Model;
 import fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.ModelDescriptionPackage;
 import fr.centralesupelec.edf.riseclipse.util.AbstractRiseClipseConsole;
 
-public abstract class CimXMLHandler extends SAXXMLHandler {
+public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
 
     private long startTime;
     private boolean nextIsCompound;
     private boolean ignore_unresolved_reference = false;
     //private String cimURI;
 
-    public CimXMLHandler( String cimURI, XMLResource xmiResource, XMLHelper helper, Map< ?, ? > options ) {
+    public AbstractCimXmlHandler( String cimURI, XMLResource xmiResource, XMLHelper helper, Map< ?, ? > options ) {
         super( xmiResource, helper, options );
         //this.cimURI = cimURI;
         nextIsCompound = false;
@@ -52,8 +52,8 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
     public void startDocument() {
         startTime = ( new Date() ).getTime();
 
-        // We need the handler for CimResourceImpl.setID()
-        (( CimResourceImpl ) xmlResource ).setXMLHandler( this );
+        // We need the handler for AbstractCimResource.setID()
+        (( AbstractCimResource ) xmlResource ).setXMLHandler( this );
         
         super.startDocument();
     }
@@ -69,16 +69,16 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         // TODO: can we keep only what is needed instead of full handler
         // to save memory ?
         // Done now in startDocument
-        //(( CimResourceImpl ) xmlResource ).setXMLHandler( this );
+        //(( AbstractCimResource ) xmlResource ).setXMLHandler( this );
     }
 
     @Override
     protected void createTopObject( String prefix, String name ) {
         String uri = helper.getURI( prefix );
-        if( CimConstants.rdfURI.equals( uri ) ) return;
+        if( AbstractCimConstants.rdfURI.equals( uri ) ) return;
         super.createTopObject( prefix, name );
 
-        CimResourceImpl r = ( CimResourceImpl ) this.xmlResource;
+        AbstractCimResource r = ( AbstractCimResource ) this.xmlResource;
         r.addCimObject( name );
     }
     
@@ -168,14 +168,14 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         // May be called with null prefix (see XMLHandler.handleFeature(String prefix, String name))
         if( prefix != null ) {
             String uri = helper.getURI( prefix );
-            if( CimConstants.rdfURI.equals( uri ) && CimConstants.nameRdfAbout.equals( name )) {
+            if( AbstractCimConstants.rdfURI.equals( uri ) && AbstractCimConstants.nameRdfAbout.equals( name )) {
                 // We consider that rdf:about is the same as rdf:ID for the purpose of reading files.
                 // But, such an object will have to be merged with the real object when all
                 // resources are loaded.
                 // This is only valid for CimObject, not for FullModel in header !
                 if( object.eClass().getEPackage() != ModelDescriptionPackage.eINSTANCE ) {
-                    (( CimResourceImpl ) xmlResource ).addForeignObject( object );
-                    name = CimConstants.nameRdfID;
+                    (( AbstractCimResource ) xmlResource ).addForeignObject( object );
+                    name = AbstractCimConstants.nameRdfID;
                 }
             }
         }
@@ -193,7 +193,7 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
                 uri = helper.getURI( prefix );
             }
         }
-        if( CimConstants.rdfURISharp.equals( uri ) ) return;
+        if( AbstractCimConstants.rdfURISharp.equals( uri ) ) return;
 
         super.endElement( uri, localName, name );
     }
@@ -201,7 +201,7 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
     @Override
     protected void setValueFromId( EObject object, EReference eReference, String ids ) {
         // Take care of references
-        String resource = attribs.getValue( CimConstants.qualifiedRdfResource );
+        String resource = attribs.getValue( AbstractCimConstants.qualifiedRdfResource );
         if( resource != null ) {
             int p = resource.indexOf( "#" );
             if( p == -1 ) {
@@ -232,10 +232,10 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
     }
     
     /*
-     * CimResourceImpl.setID() need to access setAttribValue for setting ID attribute
+     * AbstractCimResource.setID() need to access setAttribValue for setting ID attribute
      */
     public void setIDAttribValue( EObject object, String id ) {
-        setAttribValue( object, CimConstants.qualifiedRdfID, id );
+        setAttribValue( object, AbstractCimConstants.qualifiedRdfID, id );
     }
 
     @Override
@@ -263,7 +263,7 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
         // attribs may be null when rdf:resource value does not start with # (in case
         // the referenced object is elsewhere, it starts with the URI).
         String resource = null;
-        if( attribs != null ) resource = attribs.getValue( CimConstants.qualifiedRdfResource );
+        if( attribs != null ) resource = attribs.getValue( AbstractCimConstants.qualifiedRdfResource );
         if( resource != null ) {
             // take care of header elements
             if(( object instanceof Model )
@@ -315,9 +315,9 @@ public abstract class CimXMLHandler extends SAXXMLHandler {
             }
         }
         
-        // When an rdf:about is used, it is converted to rdf:ID by CimXMLHandler.getFeature()
+        // When an rdf:about is used, it is converted to rdf:ID by AbstractCimXmlHandler.getFeature()
         // However, the the value starts with a # that must be removed
-        if( CimConstants.nameRdfID.equals( feature.getName() )) {
+        if( AbstractCimConstants.nameRdfID.equals( feature.getName() )) {
                 try {
                     String id = ( String ) value;
                     if( id.charAt( 0 ) == '#' ) {
