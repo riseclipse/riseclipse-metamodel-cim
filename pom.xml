@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
  
   <groupId>fr.centralesupelec.edf.riseclipse</groupId>
-  <artifactId>RiseClipseMetamodel_Cim</artifactId>
+  <artifactId>riseclipse-metamodel-cim</artifactId>
   <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
   
@@ -11,12 +11,12 @@
     <groupId>fr.centralesupelec.edf.riseclipse</groupId>
     <artifactId>fr.centralesupelec.edf.riseclipse.developer.maven</artifactId>
     <version>1.0.8-SNAPSHOT</version>
-    <relativePath>../RiseClipseDeveloper/fr.centralesupelec.edf.riseclipse.developer.maven/pom.xml</relativePath>
+    <relativePath>../riseclipse-developer/fr.centralesupelec.edf.riseclipse.developer.maven/pom.xml</relativePath>
   </parent>
 
   <scm>
-    <connection>scm:git:git@gitlab.centralesupelec.fr:RiseClipseGroup/RiseClipseMetamodel_Cim.git</connection>
-    <developerConnection>scm:git:git@gitlab.centralesupelec.fr:RiseClipseGroup/RiseClipseMetamodel_Cim.git</developerConnection>
+    <connection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-metamodel-cim.git</connection>
+    <developerConnection>scm:git:git@gitlab-research.centralesupelec.fr:RiseClipseGroup/riseclipse-metamodel-cim.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
  
