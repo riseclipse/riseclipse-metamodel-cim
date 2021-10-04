@@ -27,6 +27,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.xmi.IllegalValueException;
 import org.eclipse.emf.ecore.xmi.UnresolvedReferenceException;
 import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.ecore.xmi.XMLHelper;
@@ -348,6 +349,27 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
                 AbstractRiseClipseConsole.getConsole().error(
                           "unresolved reference " + u.getReference()
                         + " at line " + u.getLine() + " in " + name );
+            }
+        }
+        else if( e instanceof IllegalValueException ) {
+            IllegalValueException i = ( IllegalValueException ) e;
+            if( i.getCause() instanceof ClassCastException ) {
+                String wrongType = i.getValue().getClass().getName();
+                wrongType = wrongType.substring( wrongType.lastIndexOf( "." ) + 1 );
+                if( wrongType.endsWith( "Impl" )) {
+                    wrongType = wrongType.substring( 0, wrongType.length() - 4 );
+                }
+                AbstractRiseClipseConsole.getConsole().error(
+                        "The value set to attribute " + i.getFeature().getName()
+                        + " in object " + i.getObject().eClass().getName()
+                        + " at line " + i.getLine()
+                        + " has wrong type " + wrongType
+                );
+            }
+            else {
+                AbstractRiseClipseConsole.getConsole().error(
+                        "Exception " + e.getMessage() + " while parsing " + name
+                      + " at line " + e.getLine() );
             }
         }
         else {
