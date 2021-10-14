@@ -3,11 +3,12 @@ Bundle-ManifestVersion: 2
 Bundle-Name: RiseClipse CIM Utilities
 Bundle-Vendor: CentraleSupélec & EDF
 Bundle-SymbolicName: fr.centralesupelec.edf.riseclipse.cim.util;singleton:=true
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.1.0.qualifier
 Bundle-ClassPath: .
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi,
  fr.centralesupelec.edf.riseclipse.main,
  fr.centralesupelec.edf.riseclipse.cim.headerModel
 Export-Package: fr.centralesupelec.edf.riseclipse.cim.util.cimxml
+Automatic-Module-Name: fr.centralesupelec.edf.riseclipse.cim.util
