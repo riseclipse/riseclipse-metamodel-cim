@@ -88,10 +88,10 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
 
     public void addCimObject( String name ) {
         if( cimObjectsCount.get( name ) == null ) {
-            cimObjectsCount.put( name, new Integer( 1 ) );
+            cimObjectsCount.put( name, Integer.valueOf( 1 ));
         }
         else {
-            cimObjectsCount.put( name, new Integer( cimObjectsCount.get( name ) + 1 ) );
+            cimObjectsCount.put( name, Integer.valueOf( cimObjectsCount.get( name ) + 1 ));
         }
     }
 
