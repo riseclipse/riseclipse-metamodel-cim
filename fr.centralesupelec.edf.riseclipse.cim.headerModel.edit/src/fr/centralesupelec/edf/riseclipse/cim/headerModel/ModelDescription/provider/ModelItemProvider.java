@@ -5,9 +5,9 @@
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
 **  https://www.eclipse.org/legal/epl-v20.html
-** 
+**
 **  This file is part of the RiseClipse tool
-**  
+**
 **  Contributors:
 **      Computer Science Department, CentraleSupélec
 **      EDF R&D
@@ -26,9 +26,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -98,11 +96,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addCreatedPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_created_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_created_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_created_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__CREATED, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__CREATED,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -114,11 +118,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addScenarioTimePropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_scenarioTime_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_scenarioTime_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_scenarioTime_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__SCENARIO_TIME, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__SCENARIO_TIME,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -130,11 +140,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addDescriptionPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_description_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_description_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_description_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__DESCRIPTION, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__DESCRIPTION,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -146,11 +162,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addVersionPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_version_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_version_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_version_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__VERSION, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__VERSION,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -162,11 +184,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addModelingAuthoritySetPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_modelingAuthoritySet_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_modelingAuthoritySet_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_modelingAuthoritySet_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__MODELING_AUTHORITY_SET, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__MODELING_AUTHORITY_SET,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -178,11 +206,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addProfilePropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_profile_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_profile_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_profile_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__PROFILE, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__PROFILE,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -194,11 +228,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addDependentOnUrnPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_dependentOnUrn_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_dependentOnUrn_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_dependentOnUrn_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__DEPENDENT_ON_URN, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__DEPENDENT_ON_URN,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -210,11 +250,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addSupersedesUrnPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_supersedesUrn_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_supersedesUrn_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_supersedesUrn_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES_URN, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES_URN,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**
@@ -226,10 +272,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addDependentOnPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_DependentOn_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_DependentOn_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_DependentOn_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__DEPENDENT_ON, true, false, true, null, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__DEPENDENT_ON,
+                        true,
+                        false,
+                        true,
+                        null,
+                        null,
+                        null ) );
     }
 
     /**
@@ -241,10 +294,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addDependingPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_Depending_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_Depending_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_Depending_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__DEPENDING, true, false, true, null, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__DEPENDING,
+                        true,
+                        false,
+                        true,
+                        null,
+                        null,
+                        null ) );
     }
 
     /**
@@ -256,10 +316,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addSupersedesPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_Supersedes_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_Supersedes_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_Supersedes_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES, true, false, true, null, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES,
+                        true,
+                        false,
+                        true,
+                        null,
+                        null,
+                        null ) );
     }
 
     /**
@@ -271,10 +338,17 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addSupersedesByPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_SupersedesBy_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_SupersedesBy_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_SupersedesBy_feature",
                                 "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES_BY, true, false, true, null, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__SUPERSEDES_BY,
+                        true,
+                        false,
+                        true,
+                        null,
+                        null,
+                        null ) );
     }
 
     /**
@@ -286,10 +360,16 @@ public class ModelItemProvider extends ItemProviderAdapter implements IEditingDo
     protected void addUrnPropertyDescriptor( Object object ) {
         itemPropertyDescriptors.add(
                 createItemPropertyDescriptor( ( ( ComposeableAdapterFactory ) adapterFactory ).getRootAdapterFactory(),
-                        getResourceLocator(), getString( "_UI_Model_urn_feature" ),
+                        getResourceLocator(),
+                        getString( "_UI_Model_urn_feature" ),
                         getString( "_UI_PropertyDescriptor_description", "_UI_Model_urn_feature", "_UI_Model_type" ),
-                        ModelDescriptionPackage.Literals.MODEL__URN, true, false, false,
-                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null ) );
+                        ModelDescriptionPackage.Literals.MODEL__URN,
+                        true,
+                        false,
+                        false,
+                        ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+                        null,
+                        null ) );
     }
 
     /**

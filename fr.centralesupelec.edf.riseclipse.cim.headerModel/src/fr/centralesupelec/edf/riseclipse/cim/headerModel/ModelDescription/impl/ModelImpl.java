@@ -5,9 +5,9 @@
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
 **  https://www.eclipse.org/legal/epl-v20.html
-** 
+**
 **  This file is part of the RiseClipse tool
-**  
+**
 **  Contributors:
 **      Computer Science Department, CentraleSupélec
 **      EDF R&D
@@ -25,15 +25,11 @@ import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
@@ -296,8 +292,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setCreated( Date newCreated ) {
         Date oldCreated = created;
         created = newCreated;
-        if( eNotificationRequired() ) eNotify( new ENotificationImpl( this, Notification.SET,
-                ModelDescriptionPackage.MODEL__CREATED, oldCreated, created ) );
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__CREATED, oldCreated,
+                    created ) );
     }
 
     /**
@@ -319,8 +316,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setScenarioTime( Date newScenarioTime ) {
         Date oldScenarioTime = scenarioTime;
         scenarioTime = newScenarioTime;
-        if( eNotificationRequired() ) eNotify( new ENotificationImpl( this, Notification.SET,
-                ModelDescriptionPackage.MODEL__SCENARIO_TIME, oldScenarioTime, scenarioTime ) );
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__SCENARIO_TIME,
+                    oldScenarioTime, scenarioTime ) );
     }
 
     /**
@@ -342,8 +340,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setDescription( String newDescription ) {
         String oldDescription = description;
         description = newDescription;
-        if( eNotificationRequired() ) eNotify( new ENotificationImpl( this, Notification.SET,
-                ModelDescriptionPackage.MODEL__DESCRIPTION, oldDescription, description ) );
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__DESCRIPTION,
+                    oldDescription, description ) );
     }
 
     /**
@@ -365,8 +364,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setVersion( String newVersion ) {
         String oldVersion = version;
         version = newVersion;
-        if( eNotificationRequired() ) eNotify( new ENotificationImpl( this, Notification.SET,
-                ModelDescriptionPackage.MODEL__VERSION, oldVersion, version ) );
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__VERSION, oldVersion,
+                    version ) );
     }
 
     /**
@@ -388,9 +388,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setModelingAuthoritySet( String newModelingAuthoritySet ) {
         String oldModelingAuthoritySet = modelingAuthoritySet;
         modelingAuthoritySet = newModelingAuthoritySet;
-        if( eNotificationRequired() ) eNotify(
-                new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__MODELING_AUTHORITY_SET,
-                        oldModelingAuthoritySet, modelingAuthoritySet ) );
+        if( eNotificationRequired() )
+            eNotify( new ENotificationImpl( this, Notification.SET,
+                    ModelDescriptionPackage.MODEL__MODELING_AUTHORITY_SET, oldModelingAuthoritySet,
+                    modelingAuthoritySet ) );
     }
 
     /**
@@ -401,7 +402,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< String > getProfile() {
         if( profile == null ) {
-            profile = new EDataTypeUniqueEList< String >( String.class, this, ModelDescriptionPackage.MODEL__PROFILE );
+            profile = new EDataTypeUniqueEList< >( String.class, this, ModelDescriptionPackage.MODEL__PROFILE );
         }
         return profile;
     }
@@ -414,7 +415,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< String > getDependentOnUrn() {
         if( dependentOnUrn == null ) {
-            dependentOnUrn = new EDataTypeUniqueEList< String >( String.class, this,
+            dependentOnUrn = new EDataTypeUniqueEList< >( String.class, this,
                     ModelDescriptionPackage.MODEL__DEPENDENT_ON_URN );
         }
         return dependentOnUrn;
@@ -428,7 +429,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< String > getSupersedesUrn() {
         if( supersedesUrn == null ) {
-            supersedesUrn = new EDataTypeUniqueEList< String >( String.class, this,
+            supersedesUrn = new EDataTypeUniqueEList< >( String.class, this,
                     ModelDescriptionPackage.MODEL__SUPERSEDES_URN );
         }
         return supersedesUrn;
@@ -442,7 +443,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< Model > getDependentOn() {
         if( dependentOn == null ) {
-            dependentOn = new EObjectWithInverseEList.ManyInverse< Model >( Model.class, this,
+            dependentOn = new EObjectWithInverseEList.ManyInverse< >( Model.class, this,
                     ModelDescriptionPackage.MODEL__DEPENDENT_ON, ModelDescriptionPackage.MODEL__DEPENDING );
         }
         return dependentOn;
@@ -456,7 +457,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< Model > getDepending() {
         if( depending == null ) {
-            depending = new EObjectWithInverseResolvingEList.ManyInverse< Model >( Model.class, this,
+            depending = new EObjectWithInverseResolvingEList.ManyInverse< >( Model.class, this,
                     ModelDescriptionPackage.MODEL__DEPENDING, ModelDescriptionPackage.MODEL__DEPENDENT_ON );
         }
         return depending;
@@ -470,7 +471,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< Model > getSupersedes() {
         if( supersedes == null ) {
-            supersedes = new EObjectWithInverseEList.ManyInverse< Model >( Model.class, this,
+            supersedes = new EObjectWithInverseEList.ManyInverse< >( Model.class, this,
                     ModelDescriptionPackage.MODEL__SUPERSEDES, ModelDescriptionPackage.MODEL__SUPERSEDES_BY );
         }
         return supersedes;
@@ -484,7 +485,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     @Override
     public EList< Model > getSupersedesBy() {
         if( supersedesBy == null ) {
-            supersedesBy = new EObjectWithInverseResolvingEList.ManyInverse< Model >( Model.class, this,
+            supersedesBy = new EObjectWithInverseResolvingEList.ManyInverse< >( Model.class, this,
                     ModelDescriptionPackage.MODEL__SUPERSEDES_BY, ModelDescriptionPackage.MODEL__SUPERSEDES );
         }
         return supersedesBy;
@@ -755,7 +756,7 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public String toString() {
         if( eIsProxy() ) return super.toString();
 
-        StringBuffer result = new StringBuffer( super.toString() );
+        StringBuilder result = new StringBuilder( super.toString() );
         result.append( " (created: " );
         result.append( created );
         result.append( ", scenarioTime: " );

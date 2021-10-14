@@ -5,9 +5,9 @@
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
 **  https://www.eclipse.org/legal/epl-v20.html
-** 
+**
 **  This file is part of the RiseClipse tool
-**  
+**
 **  Contributors:
 **      Computer Science Department, CentraleSupélec
 **      EDF R&D
@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.DifferenceModel;
@@ -89,7 +88,7 @@ public class ModelDescriptionPackageImpl extends EPackageImpl implements ModelDe
 
     /**
      * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-     * 
+     *
      * <p>This method is used to initialize {@link ModelDescriptionPackage#eINSTANCE} when that field is accessed.
      * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
      * <!-- begin-user-doc -->
@@ -104,9 +103,10 @@ public class ModelDescriptionPackageImpl extends EPackageImpl implements ModelDe
                 .getEPackage( ModelDescriptionPackage.eNS_URI );
 
         // Obtain or create and register package
-        ModelDescriptionPackageImpl theModelDescriptionPackage = ( ModelDescriptionPackageImpl ) ( EPackage.Registry.INSTANCE
-                .get( eNS_URI ) instanceof ModelDescriptionPackageImpl ? EPackage.Registry.INSTANCE.get( eNS_URI )
-                        : new ModelDescriptionPackageImpl() );
+        Object registeredModelDescriptionPackage = EPackage.Registry.INSTANCE.get( eNS_URI );
+        ModelDescriptionPackageImpl theModelDescriptionPackage = registeredModelDescriptionPackage instanceof ModelDescriptionPackageImpl
+                ? ( ModelDescriptionPackageImpl ) registeredModelDescriptionPackage
+                : new ModelDescriptionPackageImpl();
 
         isInited = true;
 
@@ -425,24 +425,69 @@ public class ModelDescriptionPackageImpl extends EPackageImpl implements ModelDe
      */
     protected void createExtendedMetaDataAnnotations() {
         String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";
-        addAnnotation( getModel_Created(), source, new String[] { "name", "Model.created", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_ScenarioTime(), source, new String[] { "name", "Model.scenarioTime", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_Description(), source, new String[] { "name", "Model.description", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_Version(), source, new String[] { "name", "Model.version", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_ModelingAuthoritySet(), source, new String[] { "name", "Model.modelingAuthoritySet",
-                "kind", "element", "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_Profile(), source, new String[] { "name", "Model.profile", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_DependentOnUrn(), source, new String[] { "name", "Model.DependentOn", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_SupersedesUrn(), source, new String[] { "name", "Model.Supersedes", "kind", "element",
-                "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1" } );
-        addAnnotation( getModel_Urn(), source, new String[] { "namespace", "http://www.w3.org/1999/02/22-rdf-syntax-ns",
-                "name", "about", "kind", "attribute" } );
+        addAnnotation( getModel_Created(),
+                source,
+                new String[] {
+                        "name", "Model.created",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_ScenarioTime(),
+                source,
+                new String[] {
+                        "name", "Model.scenarioTime",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_Description(),
+                source,
+                new String[] {
+                        "name", "Model.description",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_Version(),
+                source,
+                new String[] {
+                        "name", "Model.version",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_ModelingAuthoritySet(),
+                source,
+                new String[] {
+                        "name", "Model.modelingAuthoritySet",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_Profile(),
+                source,
+                new String[] {
+                        "name", "Model.profile",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_DependentOnUrn(),
+                source,
+                new String[] {
+                        "name", "Model.DependentOn",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_SupersedesUrn(),
+                source,
+                new String[] {
+                        "name", "Model.Supersedes",
+                        "kind", "element",
+                        "namespace", "http://iec.ch/TC57/61970-552/ModelDescription/1"
+                } );
+        addAnnotation( getModel_Urn(),
+                source,
+                new String[] {
+                        "namespace", "http://www.w3.org/1999/02/22-rdf-syntax-ns",
+                        "name", "about",
+                        "kind", "attribute"
+                } );
     }
 
 } //ModelDescriptionPackageImpl

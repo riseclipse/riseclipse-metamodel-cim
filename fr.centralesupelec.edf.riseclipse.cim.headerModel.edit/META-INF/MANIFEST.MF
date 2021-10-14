@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: RiseClipse CIM Header Edit Support
-Bundle-Vendor: CentraleSupélec & EDF
+Bundle-Name: %pluginName
+Bundle-Vendor: %providerName
 Bundle-SymbolicName: fr.centralesupelec.edf.riseclipse.cim.headerModel.edit;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-ClassPath: .
