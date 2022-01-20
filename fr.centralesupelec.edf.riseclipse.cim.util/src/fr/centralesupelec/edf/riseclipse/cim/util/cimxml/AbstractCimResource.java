@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2019 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -15,7 +15,7 @@
 **      dominique.marcadet@centralesupelec.fr
 **      aurelie.dehouck-neveu@edf.fr
 **  Web site:
-**      http://wdi.supelec.fr/software/RiseClipse/
+**      https://riseclipse.github.io/
 *************************************************************************
 */
 package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
@@ -88,10 +88,10 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
 
     public void addCimObject( String name ) {
         if( cimObjectsCount.get( name ) == null ) {
-            cimObjectsCount.put( name, new Integer( 1 ) );
+            cimObjectsCount.put( name, Integer.valueOf( 1 ));
         }
         else {
-            cimObjectsCount.put( name, new Integer( cimObjectsCount.get( name ) + 1 ) );
+            cimObjectsCount.put( name, Integer.valueOf( cimObjectsCount.get( name ) + 1 ));
         }
     }
 
