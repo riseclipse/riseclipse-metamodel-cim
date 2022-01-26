@@ -38,6 +38,10 @@ import fr.centralesupelec.edf.riseclipse.util.IRiseClipseResource;
  */
 public abstract class AbstractCimResource extends XMLResourceImpl implements IRiseClipseResource {
 
+    private static final String CIM_INFO_CATEGORY = "CIM/Statistics";
+    // Used in other places
+            static final String CIM_LOADER_CATEGORY = "CIM/ModelLoader";
+    
     private HashMap< String, Integer > cimObjectsCount;
     private AbstractCimXmlHandler abstractCimXmlHandler;
     private Set< EObject > foreignObjects;
@@ -97,9 +101,9 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
 
     @Override
     public void printStatistics( IRiseClipseConsole console ) {
-        console.info( "Statistics on resource " + this.getURI() );
+        console.info( CIM_INFO_CATEGORY, 0,  "Statistics on resource ", this.getURI() );
         for( String name : cimObjectsCount.keySet() ) {
-            console.info( name + " : " + cimObjectsCount.get( name ) );
+            console.info( CIM_INFO_CATEGORY, 0, name, " : ", cimObjectsCount.get( name ) );
         }
     }
 
@@ -135,9 +139,8 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
                 this.getContents().remove( object );
             }
             else {
-                console.error(
-                        "cannot find foreign object with ID " + this.getID( object ) + " in "
-                                + this.uri.lastSegment() );
+                console.error( CIM_LOADER_CATEGORY, 0,
+                        "cannot find foreign object with ID ", this.getID( object ), " in ", this.uri.lastSegment() );
             }
         }
         foreignObjects.clear();
