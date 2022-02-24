@@ -128,7 +128,10 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
         for( EObject object : foreignObjects ) {
             EObject original = getEObjectByIDInNeighbors( this.getID( object ));
             if( original != null ) {
-                EClass c = original.eClass();
+                // A superclass may be used instead of the real class of object
+                // They are such cases in ENTSO-E_Test_Configurations_v3.0 files
+                //EClass c = original.eClass();
+                EClass c = object.eClass();
                 for( EStructuralFeature f : c.getEAllStructuralFeatures() ) {
                     if( object.eIsSet( f ) ) {
                         Object value = object.eGet( f );
