@@ -22,12 +22,15 @@ package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 
-import fr.centralesupelec.edf.riseclipse.util.RiseClipseRuntimeException;
+import fr.centralesupelec.edf.riseclipse.util.AbstractRiseClipseConsole;
+
+//import fr.centralesupelec.edf.riseclipse.util.RiseClipseRuntimeException;
 
 public abstract class AbstractCimResourceHandler extends BasicResourceHandler {
     
@@ -69,7 +72,8 @@ public abstract class AbstractCimResourceHandler extends BasicResourceHandler {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch( IOException e ) {
-            throw new RiseClipseRuntimeException( "AbstractCimResourceHandler.preSave: outputStream.write failed", e );
+            AbstractRiseClipseConsole.getConsole().emergency( AbstractCimResource.CIM_LOADER_CATEGORY, 0, 
+                    "AbstractCimResourceHandler.preSave: outputStream.write failed" );
         }
         
     }
@@ -93,7 +97,8 @@ public abstract class AbstractCimResourceHandler extends BasicResourceHandler {
             outputStream.write( buffer.toString().getBytes() );
         }
         catch (IOException e) {
-            throw new RiseClipseRuntimeException( "AbstractCimResourceHandler.postSave: outputStream.write failed", e );
+            AbstractRiseClipseConsole.getConsole().emergency( AbstractCimResource.CIM_LOADER_CATEGORY, 0, 
+                    "AbstractCimResourceHandler.postSave: outputStream.write failed" );
         }
 
         super.postSave( resource, outputStream, options );

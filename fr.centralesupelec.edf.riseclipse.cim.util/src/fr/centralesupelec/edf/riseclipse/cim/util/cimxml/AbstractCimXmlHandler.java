@@ -66,7 +66,8 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
         super.endDocument();
         
         String name = this.resourceURI.lastSegment();
-        AbstractRiseClipseConsole.getConsole().info( "time to load " + name + ": " + (( new Date() ).getTime() - startTime ) + "ms" );
+        AbstractRiseClipseConsole.getConsole().info( AbstractCimResource.CIM_LOADER_CATEGORY, 0, 
+                                                     "time to load ", name, ": ", (( new Date() ).getTime() - startTime ) + "ms" );
 
         // We keep handler because it keeps unresolved references
         // TODO: can we keep only what is needed instead of full handler
@@ -208,12 +209,11 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
         if( resource != null ) {
             int p = resource.indexOf( "#" );
             if( p == -1 ) {
-                String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
                 AbstractRiseClipseConsole.getConsole().error(
-                        "The rdf:resource value of "
-                      + eReference.getContainerClass().getSimpleName()
-                      + "." + eReference.getName()
-                      + " is missing '#'" + where );
+                      AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                      "The rdf:resource value of ",
+                      eReference.getContainerClass().getSimpleName(), ".", eReference.getName(),
+                      " is missing '#'" );
             }
             else {
                 // Ignore the URI before the # because we don't handle it
@@ -225,12 +225,11 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
         else {
             // Issue #3-an-error-should-be-detected-when-a-reference-is-given-as-the-element-value-instead-of-as-the-value-of-the-rdf-resource-attribute
             //super.setValueFromId( object, eReference, ids );
-            String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
             AbstractRiseClipseConsole.getConsole().error(
-                      "the value of feature "
-                    + eReference.getContainerClass().getSimpleName()
-                    + "." + eReference.getName()
-                    + " should be given using the rdf:resource attribute" + where );
+                    AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                    "the value of feature ",
+                    eReference.getContainerClass().getSimpleName(), ".", eReference.getName(),
+                    " should be given using the rdf:resource attribute" );
         }
     }
     
@@ -246,16 +245,17 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
         // Catch multiple set of same attribute (see below for references)
         if( ! feature.isMany() ) {
             if( object.eIsSet( feature )) {
-                String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
                 if( object.eGet( feature ).equals( value )) {
                     AbstractRiseClipseConsole.getConsole().warning(
-                              "feature " + feature.getName()
-                            + " has already been set with same value" + where );
+                            AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                            "feature ", feature.getName(),
+                            " has already been set with same value" );
                 }
                 else {
                     AbstractRiseClipseConsole.getConsole().error(
-                              "feature " + feature.getName()
-                            + " has already been set with a different value, it will be overwritten" + where );
+                            AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                            "feature ", feature.getName(),
+                            " has already been set with a different value, it will be overwritten" );
                 }
             }
         }
@@ -293,18 +293,19 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
     @Override
     protected void setFeatureValue( EObject object, EStructuralFeature feature, Object value, int position ) {
         if( feature instanceof EReference ) {
-            String where = getLineNumber() == -1 ? "" : " at line " + getLineNumber();
             if( ! feature.isMany() ) {
                 if( object.eIsSet( feature )) {
                     if( object.eGet( feature ).equals( value )) {
                         AbstractRiseClipseConsole.getConsole().warning(
-                                  "feature " + feature.getName()
-                                + " has already been set with same value" + where );
+                                AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                                "feature ", feature.getName(),
+                                " has already been set with same value" );
                     }
                     else {
                         AbstractRiseClipseConsole.getConsole().error(
-                                  "feature " + feature.getName()
-                                + " has already been set with a different value, it will be overwritten" + where );
+                                AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                                "feature ", feature.getName(),
+                                " has already been set with a different value, it will be overwritten" );
                     }
                 }
             }
@@ -312,8 +313,9 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
                 EList< ? > l = ( EList< ? > ) object.eGet( feature );
                 if(( l != null ) && l.contains( value )) {
                     AbstractRiseClipseConsole.getConsole().warning(
-                              "reference " + feature.getName()
-                            + " has already been added with same value" + where );
+                            AbstractCimResource.CIM_LOADER_CATEGORY, getLineNumber(), 
+                            "reference ", feature.getName(),
+                            " has already been added with same value" );
                 }
             }
         }
@@ -347,8 +349,9 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
             if( ! ignore_unresolved_reference ) {
                 UnresolvedReferenceException u = ( UnresolvedReferenceException ) e;
                 AbstractRiseClipseConsole.getConsole().error(
-                          "unresolved reference " + u.getReference()
-                        + " at line " + u.getLine() + " in " + name );
+                        AbstractCimResource.CIM_LOADER_CATEGORY, u.getLine(), 
+                        "unresolved reference ", u.getReference(),
+                        " in ", name );
             }
         }
         else if( e instanceof IllegalValueException ) {
@@ -360,22 +363,22 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
                     wrongType = wrongType.substring( 0, wrongType.length() - 4 );
                 }
                 AbstractRiseClipseConsole.getConsole().error(
-                        "The value set to attribute " + i.getFeature().getName()
-                        + " in object " + i.getObject().eClass().getName()
-                        + " at line " + i.getLine()
-                        + " has wrong type " + wrongType
+                        AbstractCimResource.CIM_LOADER_CATEGORY, i.getLine(), 
+                        "The value set to attribute ", i.getFeature().getName(),
+                        " in object ", i.getObject().eClass().getName(),
+                        " has wrong type ", wrongType
                 );
             }
             else {
                 AbstractRiseClipseConsole.getConsole().error(
-                        "Exception " + e.getMessage() + " while parsing " + name
-                      + " at line " + e.getLine() );
+                        AbstractCimResource.CIM_LOADER_CATEGORY, e.getLine(), 
+                        "Exception ", e.getMessage(), " while parsing ", name );
             }
         }
         else {
             AbstractRiseClipseConsole.getConsole().error(
-                      "Exception " + e.getMessage() + " while parsing " + name
-                    + " at line " + e.getLine() );
+                    AbstractCimResource.CIM_LOADER_CATEGORY, e.getLine(), 
+                    "Exception ", e.getMessage(), " while parsing ", name );
         }
     }
 
