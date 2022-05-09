@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -22,15 +22,12 @@ package fr.centralesupelec.edf.riseclipse.cim.util.cimxml;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Date;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.BasicResourceHandler;
 
 import fr.centralesupelec.edf.riseclipse.util.AbstractRiseClipseConsole;
-
-//import fr.centralesupelec.edf.riseclipse.util.RiseClipseRuntimeException;
 
 public abstract class AbstractCimResourceHandler extends BasicResourceHandler {
     
