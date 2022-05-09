@@ -348,7 +348,7 @@ public abstract class AbstractCimXmlHandler extends SAXXMLHandler {
         if( e instanceof UnresolvedReferenceException ) {
             if( ! ignore_unresolved_reference ) {
                 UnresolvedReferenceException u = ( UnresolvedReferenceException ) e;
-                AbstractRiseClipseConsole.getConsole().error(
+                AbstractRiseClipseConsole.getConsole().notice(
                         AbstractCimResource.CIM_LOADER_CATEGORY, u.getLine(), 
                         "unresolved reference ", u.getReference(),
                         " in ", name );
