@@ -1,6 +1,6 @@
 /*
 *************************************************************************
-**  Copyright (c) 2016-2021 CentraleSupélec & EDF.
+**  Copyright (c) 2016-2022 CentraleSupélec & EDF.
 **  All rights reserved. This program and the accompanying materials
 **  are made available under the terms of the Eclipse Public License v2.0
 **  which accompanies this distribution, and is available at
@@ -54,12 +54,12 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
     public AbstractCimResource( URI uri ) {
         super( uri );
 
-        // TODO: use both intrinsicID and extrinsicID ?
+        // TODO: use both intrinsicID and extrinsicID?
         // see http://fr.slideshare.net/kenn.hussey/performance-and-extensibility-with-emf
-        this.setIntrinsicIDToEObjectMap( new HashMap< String, EObject >() );
+        this.setIntrinsicIDToEObjectMap( new HashMap<>() );
 
-        cimObjectsCount = new HashMap< String, Integer >();
-        foreignObjects = new HashSet< EObject >();
+        cimObjectsCount = new HashMap<>();
+        foreignObjects = new HashSet<>();
         loadFinalization = false;
     }
 
@@ -126,7 +126,7 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
 
         // Merge foreign objects into originals
         for( EObject object : foreignObjects ) {
-            EObject original = getEObjectByIDInNeighbors( this.getID( object ));
+            EObject original = getEObjectByIDInNeighbors( this.getID( object ), true );
             if( original != null ) {
                 // A superclass may be used instead of the real class of object
                 // They are such cases in ENTSO-E_Test_Configurations_v3.0 files
@@ -142,11 +142,13 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
                 this.getContents().remove( object );
             }
             else {
-                console.error( CIM_LOADER_CATEGORY, 0,
+                console.notice( CIM_LOADER_CATEGORY, 0,
                         "cannot find foreign object with ID ", this.getID( object ), " in ", this.uri.lastSegment() );
             }
         }
-        foreignObjects.clear();
+        // Do not clear now, we need to know whether an object is foreign or not
+        // to find originals
+        //foreignObjects.clear();
     }
 
     /*
@@ -183,21 +185,30 @@ public abstract class AbstractCimResource extends XMLResourceImpl implements IRi
 
         if( !loadFinalization ) return null;
 
-        return getEObjectByIDInNeighbors( id );
+        return getEObjectByIDInNeighbors( id, false );
     }
 
-    protected EObject getEObjectByIDInNeighbors( String id ) {
+    protected EObject getEObjectByIDInNeighbors( String id, boolean original ) {
         for( Resource resource : this.getResourceSet().getResources() ) {
             if( resource == this ) continue;
             if( resource instanceof AbstractCimResource ) {
                 EObject obj = resource.getEObject( id );
-                if( obj != null ) return obj;
+                if( obj != null ) {
+                    if( original ) {
+                        if( ! (( AbstractCimResource ) resource ).foreignObjects.contains( obj )) {
+                            return obj;
+                        }
+                    }
+                    else {
+                        return obj;
+                    }
+                }
             }
         }
 
         return null;
     }
-
+    
     public void addForeignObject( EObject object ) {
         foreignObjects.add( object );
     }
