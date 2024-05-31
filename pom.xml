@@ -26,7 +26,7 @@
  
   <groupId>io.github.riseclipse</groupId>
   <artifactId>riseclipse-metamodel-cim</artifactId>
-  <version>1.2.2-SNAPSHOT</version>
+  <version>1.2.2</version>
   <packaging>pom</packaging>
   
   <parent>
@@ -39,7 +39,7 @@
     <connection>scm:git:git@github.com:riseclipse/riseclipse-metamodel-cim.git</connection>
     <developerConnection>scm:git:git@github.com:riseclipse/riseclipse-metamodel-cim.git</developerConnection>
     <url>https://github.com/riseclipse/riseclipse-metamodel-cim</url>
-    <tag>HEAD</tag>
+    <tag>riseclipse-metamodel-cim-1.2.2</tag>
   </scm>
  
   <build>
