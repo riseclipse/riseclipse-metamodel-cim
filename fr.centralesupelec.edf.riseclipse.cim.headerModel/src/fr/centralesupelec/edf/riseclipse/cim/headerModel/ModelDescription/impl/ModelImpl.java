@@ -292,9 +292,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setCreated( Date newCreated ) {
         Date oldCreated = created;
         created = newCreated;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__CREATED, oldCreated,
                     created ) );
+        }
     }
 
     /**
@@ -316,9 +317,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setScenarioTime( Date newScenarioTime ) {
         Date oldScenarioTime = scenarioTime;
         scenarioTime = newScenarioTime;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__SCENARIO_TIME,
                     oldScenarioTime, scenarioTime ) );
+        }
     }
 
     /**
@@ -340,9 +342,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setDescription( String newDescription ) {
         String oldDescription = description;
         description = newDescription;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__DESCRIPTION,
                     oldDescription, description ) );
+        }
     }
 
     /**
@@ -364,9 +367,10 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setVersion( String newVersion ) {
         String oldVersion = version;
         version = newVersion;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__VERSION, oldVersion,
                     version ) );
+        }
     }
 
     /**
@@ -388,10 +392,11 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setModelingAuthoritySet( String newModelingAuthoritySet ) {
         String oldModelingAuthoritySet = modelingAuthoritySet;
         modelingAuthoritySet = newModelingAuthoritySet;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET,
                     ModelDescriptionPackage.MODEL__MODELING_AUTHORITY_SET, oldModelingAuthoritySet,
                     modelingAuthoritySet ) );
+        }
     }
 
     /**
@@ -510,8 +515,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
     public void setUrn( String newUrn ) {
         String oldUrn = urn;
         urn = newUrn;
-        if( eNotificationRequired() )
+        if( eNotificationRequired() ) {
             eNotify( new ENotificationImpl( this, Notification.SET, ModelDescriptionPackage.MODEL__URN, oldUrn, urn ) );
+        }
     }
 
     /**
@@ -754,7 +760,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model {
      */
     @Override
     public String toString() {
-        if( eIsProxy() ) return super.toString();
+        if( eIsProxy() ) {
+            return super.toString();
+        }
 
         StringBuilder result = new StringBuilder( super.toString() );
         result.append( " (created: " );
