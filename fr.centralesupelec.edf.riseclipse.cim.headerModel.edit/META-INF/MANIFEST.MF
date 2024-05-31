@@ -3,14 +3,14 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-SymbolicName: fr.centralesupelec.edf.riseclipse.cim.headerModel.edit;singleton:=true
-Bundle-Version: 1.2.0.qualifier
+Bundle-Version: 1.2.2.qualifier
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Activator: fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider.HeaderModelEditPlugin$Implementation
 Export-Package: fr.centralesupelec.edf.riseclipse.cim.headerModel.ModelDescription.provider
 Require-Bundle: org.eclipse.core.runtime,
- fr.centralesupelec.edf.riseclipse.cim.headerModel;bundle-version="1.2.0";visibility:=reexport,
+ fr.centralesupelec.edf.riseclipse.cim.headerModel;bundle-version="1.2.2";visibility:=reexport,
  org.eclipse.emf.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: fr.centralesupelec.edf.riseclipse.cim.headerModel.edit
